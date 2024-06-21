@@ -16,6 +16,7 @@ public class Products {
     @Column(name = "Code")
     private Integer code;
 
+
     @Column(name = "Category")
     private Category category;
 

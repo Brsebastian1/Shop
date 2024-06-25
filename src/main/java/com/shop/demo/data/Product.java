@@ -4,12 +4,12 @@ import jakarta.persistence.*;
 
 @Entity
 @Table
-public class Products {
+public class Product {
     @Column(name = "Name")
     private String name;
 
     @Column(name = "Price")
-    private String price;
+    private Integer price;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,11 +30,11 @@ public class Products {
         this.name = name;
     }
 
-    public String getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 

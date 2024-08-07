@@ -3,9 +3,10 @@ package com.shop.demo.service.impl;
 import com.shop.demo.data.Product;
 import com.shop.demo.repositories.ShopRepository;
 import com.shop.demo.service.ShopService;
-
+import org.springframework.stereotype.Service;
 import java.util.List;
 
+@Service
 public class ShopServiceImpl implements ShopService {
 
     private final ShopRepository shopRepository;
@@ -31,7 +32,7 @@ public class ShopServiceImpl implements ShopService {
     @Override
     public List<Product> search(String title) {
         var products = shopRepository.findByName(title);
-        return List.of((Product) products);
+        return products;
     }
 
     @Override

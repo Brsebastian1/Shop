@@ -5,22 +5,36 @@ import jakarta.persistence.*;
 @Entity
 @Table
 public class Product {
-    @Column(name = "Name")
+    @Column
     private String name;
 
-    @Column(name = "Price")
-    private Integer price;
+    @Column
+    private int price;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Code")
+    @Column
     private Integer code;
 
-    @Column(name = "Category")
+    @Column
     private Category category;
 
-    @Column(name = "Stock")
+    @Column
     private String stock;
+
+    public Product(String name, int price, Category category, String stock){
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.stock = stock;
+    }
+
+    public Product(String name, Integer price, Category category, String stock) {
+    }
+
+    public Product() {
+
+    }
 
     public String getName() {
         return name;

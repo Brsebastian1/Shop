@@ -1,6 +1,6 @@
 package com.shop.demo.service;
-
 import com.shop.demo.data.Product;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 

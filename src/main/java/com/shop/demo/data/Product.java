@@ -22,14 +22,11 @@ public class Product {
     @Column
     private String stock;
 
-    public Product(String name, int price, Category category, String stock){
+    public Product(String name, int price, Category category, String stock) {
         this.name = name;
         this.price = price;
         this.category = category;
         this.stock = stock;
-    }
-
-    public Product(String name, Integer price, Category category, String stock) {
     }
 
     public Product() {

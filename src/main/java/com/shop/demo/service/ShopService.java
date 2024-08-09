@@ -1,15 +1,16 @@
 package com.shop.demo.service;
+
 import com.shop.demo.data.Product;
-import org.springframework.stereotype.Service;
+import com.shop.demo.exceptions.SearchException;
 
 import java.util.List;
 
 public interface ShopService {
     Product save(Product product);
 
-    void delete(Product product);
+    void delete(Long id);
 
-    List<Product> search(String name);
+    List<Product> search(String name) throws SearchException;
 
     List<Product> findAll();
 

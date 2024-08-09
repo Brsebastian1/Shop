@@ -1,9 +1,11 @@
 package com.shop.demo.service.impl;
 
 import com.shop.demo.data.Product;
+import com.shop.demo.exceptions.SearchException;
 import com.shop.demo.repositories.ShopRepository;
 import com.shop.demo.service.ShopService;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -11,41 +13,40 @@ public class ShopServiceImpl implements ShopService {
 
     private final ShopRepository shopRepository;
 
-    public ShopServiceImpl(ShopRepository shopRepository){
+    public ShopServiceImpl(ShopRepository shopRepository) {
         this.shopRepository = shopRepository;
     }
+
     @Override
     public Product save(Product product) {
         return shopRepository.save(product);
     }
 
     @Override
-    public void delete(Product product) {
-        try {
-            Integer id = product.getCode();
-            shopRepository.deleteById(Long.valueOf(id));
-        } catch (Exception e) {
-
-        }
+    public void delete(Long id) {
+        shopRepository.deleteById(id);
     }
 
     @Override
-    public List<Product> search(String title) {
-        var products = shopRepository.findByName(title);
+    public List<Product> search(String name) throws SearchException {
+        var products = shopRepository.findByName(name);
+        if (products.isEmpty()) {
+            throw new SearchException(name);
+        }
         return products;
+
     }
 
     @Override
     public List<Product> findAll() {
-        var products = shopRepository.findAll();
-        return List.of((Product) products);
+        return shopRepository.findAll();
     }
 
     @Override
     public Integer inventoryValue() {
         List<Product> products = findAll();
         int totalValue = 0;
-        for(Product product : products){
+        for (Product product : products) {
             totalValue += product.getPrice();
         }
         return totalValue;
